@@ -31,12 +31,26 @@ def init(dim, n=1):
     return init
 
 
+def get_solution(x, objs):
+    """ je considère qu'on ne me donne que un vecteur de solution , et pas un vecteur de vecteur de solution."""
+    obj_to_return = []
+    for obj in objs:
+        calcul = 0
+        for i in range(len(x)):
+            calcul += obj[i][x[i]]
+        obj_to_return.append(calcul)
+    return obj_to_return
+
+
 if __name__ == '__main__':
-    dim, obj = read_data('LAP-8-2objSOL.dat')
-    init = init(dim, 3)
+    filepath = 'Data/'
+    dim, obj = read_data(filepath+'LAP-8-2objSOL.dat')
+    ini = init(dim, 3)
     print(f"""
         dim : {dim} 
         obj : {obj}
         init : {init}
     """)
-    create_namedtuple()
+    # create_namedtuple()
+    for element in ini:
+        print('solution \n :', get_solution(element, obj))
