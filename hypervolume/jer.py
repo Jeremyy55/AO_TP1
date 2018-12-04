@@ -12,3 +12,12 @@ def domine(solution_1, solution_2):
             bool_domine = False
             break
     return bool_domine
+
+
+def generate_from_domination(solution_1, solution_2):
+    generated = []
+    for i in range(len(solution_1)):
+        tmp = list(solution_2)  # copy
+        tmp[i] = solution_1[i]
+        generated.append(tmp)
+    return generated
