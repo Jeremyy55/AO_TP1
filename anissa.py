@@ -33,22 +33,22 @@ def compare_two_points(tuple1,tuple2,) :
     solutions1 = tuple1.solution 
     solutions2 = tuple2.solution 
     
-    comp_list = [1 if obj1>obj2 else 0 if obj1==obj2 else -1 for obj1,obj2 in zip(solutions1,solutions2)]
+    comp_list = [-1 if obj1>obj2 else 0 if obj1==obj2 else 1 for obj1,obj2 in zip(solutions1,solutions2)]
     
     comp_set = set(comp_list)
-    print(comp_set)
+    #print(comp_set)
     
     if all(x in comp_set for x in [0,1]) | ({1} == comp_set) :
-        print('on delete le 2e element')
+        print('on delete le 2e element : ' , tuple2)
         elem_to_del = 2
     
     elif (all(x in comp_set for x in [0,-1])) | ({-1} == comp_set) :
-        print('on delete le 1er element')
+        print('on delete le 1er element :', tuple1)
         elem_to_del = 1
          
     elif {0} == comp_set :
-        print('on supprime le 1er element wouhou - arbitraire')
-        elem_to_del = 1
+        print('on ne supprime rien, les obj sont egaux :')
+        elem_to_del = 0
         
     else :
         print('On ne supprime rien ')
