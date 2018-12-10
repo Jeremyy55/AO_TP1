@@ -17,7 +17,7 @@ def x_and_sol_to_named_tuple(x_to_convert,objs) :
     
     else :
         
-        return Combo(x_to_convert,get_solution(x_to_convert,objs))
+        return [Combo(x_to_convert,get_solution(x_to_convert,objs))]
     
  
 
