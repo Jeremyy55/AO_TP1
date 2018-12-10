@@ -55,3 +55,55 @@ def compare_two_points(tuple1,tuple2,) :
         elem_to_del = 0
     
     return elem_to_del
+
+
+def add_and_update_archive(neighbour_tuples, archive_tuple) :
+    
+    """ pour chaque nouvel élément potentiel, comparer cet élément à tout l'archive 
+    Si l'élément domine un élément de l'archive, supprimer ce dernier et ajouter le nouvel élément
+    Si l'élément se fait dominer au moins une fois, supprimer l'élement 
+    Sinon, ajouter à l'archive."""
+    
+    who_to_del = 0 
+    neigh_is_worse = False
+    neighs_to_add = []
+    unique_archive = []
+   
+    archive_tuple_copy = archive_tuple.copy()
+    
+    for neighbour in neighbour_tuples :
+        
+        
+        for arch in reversed(archive_tuple_copy) : 
+            
+            #print('treating another arch')
+                   
+            who_to_del = compare_two_points(neighbour,arch)
+            
+            if who_to_del == 2 :
+                print("on va del qqun dans l'arch : ", arch)
+                archive_tuple_copy[:] = [x for x in archive_tuple_copy if x != arch]
+            
+            if who_to_del == 1 :
+                print(' issue : neighbour is worse than someone in the archive')
+                neigh_is_worse = True
+                break
+                
+        if neigh_is_worse == False :
+            neighs_to_add.append(neighbour)
+            neigh_is_worse = False
+        
+                
+            #print('after boucle if \n')   
+            #print(archive_tuple_copy)
+    
+    #print('neight to add : \n' ,neighs_to_add)
+    archive_tuple_copy.extend(neighs_to_add)
+    #print('full archive \n: ' , archive_tuple_copy)
+    
+    unique = [unique_archive.append(x) for x in archive_tuple_copy if x not in unique_archive]
+    
+    #print('normally unique arch ' , unique_archive)
+    
+    return unique_archive
+            
