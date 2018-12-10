@@ -56,6 +56,41 @@ def compare_two_points(tuple1,tuple2,) :
     
     return elem_to_del
 
+def compare_and_delete(tuple_group) :
+    
+    """Compares each tuple to all the elements in the list,
+    deletes the dominated ones,
+    as well as the duplicates """
+
+    dominated = []
+    unique_domi = []
+    unique_tuple_group = []
+    tuple_group_copy = tuple_group.copy()
+    
+    ## creates a list of dominated tuples
+    for (tuple1,tuple2) in itertools.combinations(tuple_group_copy,2):
+             
+            
+            who_to_del = compare_two_points(tuple1,tuple2,)
+         
+            if who_to_del == 1 :
+                dominated.append(tuple1)
+            if who_to_del == 2 :
+                dominated.append(tuple2)
+    
+    ## creates unique list of dominated tuples
+    unique = [unique_domi.append(x) for x in dominated if x not in unique_domi]         
+    print('the dominated vector' , unique_domi)
+    
+    ## delete all the dominated tuples   
+    tuple_group_copy[:] =  [n for n in tuple_group_copy if n not in unique_domi]
+    
+    ### delete all the duplicates in the tuple list  
+    unique2 = [unique_tuple_group.append(x) for x in tuple_group_copy if x not in unique_tuple_group]
+         
+    return unique_tuple_group
+    
+
 
 def add_and_update_archive(neighbour_tuples, archive_tuple) :
     
