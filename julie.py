@@ -28,3 +28,32 @@ def findNeighbours(X, nbNeighbour):
         neighbours.append(newNeighbour)
         break
   return neighbours
+
+def findNeighboursA(X, nbNeighbour,nPermut):
+    neighbours = []
+    for i in range(0, nbNeighbour):
+        newNeighbour = X.copy()
+    
+        while True:
+            
+            permut_rows = random.sample(X,nPermut)
+                                        
+            temps = [newNeighbour[row] for row in permut_rows]
+            
+            for tmp,row in zip(reversed(temps),permut_rows) :   
+                newNeighbour[row] = tmp
+
+            found = False
+            for nb in neighbours:
+                doublon = True
+                for j in range(0, len(X)):
+                    if nb[j] != newNeighbour[j]:
+                        doublon = False
+                if doublon == True:
+                    found = True
+
+            if not found:
+                neighbours.append(newNeighbour)
+                break
+
+    return neighbours
