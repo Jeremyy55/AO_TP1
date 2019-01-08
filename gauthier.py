@@ -1,6 +1,5 @@
-
 def update_iterations_count(change,iterations_count):
-  if change==True:
+  if change==False:
     iterations_count+=1
     print(iterations_count)
   else:
