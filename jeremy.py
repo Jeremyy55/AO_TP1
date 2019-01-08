@@ -19,16 +19,16 @@ def read_data(filename):
     obj = []
     for i in range(4):
         obj.append(array[1+i*dim**2:1+(i+1)*dim**2].reshape((dim, dim)))
-    return dim, obj
+    return dim, np.array(obj)
 
 
 def init(dim, n=1):
-    init = list()
+    ini = list()
     for i in range(n):
         tmp = [i for i in range(dim)]
         shuffle(tmp)
-        init.append(tmp)
-    return init
+        ini.append(tmp)
+    return ini
 
 
 def get_solution(x, objs):
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     print(f"""
         dim : {dim} 
         obj : {obj}
-        init : {init}
+        init : {ini}
     """)
     # create_namedtuple()
     for element in ini:
