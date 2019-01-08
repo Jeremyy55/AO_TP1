@@ -1,0 +1,6 @@
+{
+  "test_GO.py::test_false_domine": true,
+  "test_GO.py::test_generate_from_domination_3": true,
+  "test_GO.py::test_true_domine": true,
+  "test_jer.py": true
+}
