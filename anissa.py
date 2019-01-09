@@ -151,6 +151,8 @@ def compare_old_and_new_archive(archive_old,archive_new) :
     
     equivalent_found = 0
     archive_changed = True;
+    
+    print('coucou')
 
     for new in archive_new :   
     
@@ -172,3 +174,5 @@ def compare_old_and_new_archive(archive_old,archive_new) :
     
 
     return archive_changed 
+
+
