@@ -1,0 +1,7 @@
+[
+  "hypervolume/test_GO.py::test_compute_hypervolum_surface_3d",
+  "hypervolume/test_GO.py::test_compute_hypervolum_surface_2d",
+  "hypervolume/test_GO.py::test_true_domine",
+  "hypervolume/test_GO.py::test_false_domine",
+  "hypervolume/test_GO.py::test_generate_from_domination_3"
+]
