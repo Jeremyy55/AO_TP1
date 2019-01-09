@@ -1,6 +1,28 @@
 import numpy as np
 
 
+def Local_nadir(archive, reference):
+    LNs = [reference]
+    for arch in archive:
+        tmp_LNs = []
+        for LN in LNs:
+            if domine_min(arch, LN):
+                for element in generate_from_domination(arch, LN):
+                    tmp_LNs.append(element)
+            else:
+                tmp_LNs.append(LN)
+
+        dominator = []
+        for i in range(len(tmp_LNs)):
+            for j in range(len(tmp_LNs)):
+                if domine_min(tmp_LNs[i], tmp_LNs[j]) and tmp_LNs[j] != tmp_LNs[i]:
+                    dominator.append(i)
+        for index in reversed(dominator):
+            del tmp_LNs[index]
+        LNs = tmp_LNs
+    return LNs
+
+
 def get_front(point, ensemble):
     pass
 

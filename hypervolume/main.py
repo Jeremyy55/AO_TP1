@@ -1,23 +1,21 @@
-import jer
+from jer import Local_nadir
 import GO
 import numpy as np
+from pprint import pprint
+
+
+def bi_objectif():
+    archive = [[2, 4], [3, 3], [5, 2]]
+    reference = [7, 5]
+    print(Local_nadir(archive, reference))
+
+
+def tri_objectif():
+    archive = [[3, 5, 7], [6, 2, 4], [4, 7, 3]]
+    reference = [10, 10, 10]
+    print('tri res: ', Local_nadir(archive, reference))
+
 
 if __name__ == '__main__':
     print('debut')
-    archive = [[2, 4], [3, 3], [5, 2]]
-    reference = [7, 5]
-
-    LNs = [reference]
-    for arch in archive:
-        new_LNs = []
-        print('arch:', arch)
-        for LN in LNs:
-            print('LN', LN)
-            if jer.domine_min(arch, LN):
-                print(arch, ' domine ', LN)
-                for element in jer.generate_from_domination(arch, LN):
-                    new_LNs.append(element)
-            else:
-                new_LNs.append(LN)
-        LNs = new_LNs
-    print(LNs)
+    tri_objectif()
