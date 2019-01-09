@@ -26,6 +26,8 @@ def compare_two_points(tuple1,tuple2,) :
     1 : the first element gets dominated
     2 : the second element gets dominated """
     
+    #print("first tuple", tuple1)
+    #print("second tupel",tuple2)
     elem_to_del = 0
     
     solutions1 = tuple1.solution 
@@ -36,17 +38,17 @@ def compare_two_points(tuple1,tuple2,) :
     comp_set = set(comp_list)
     #print(comp_set)
     
-    if all(x in comp_set for x in [0,1]) | ({1} == comp_set) :
+    if {0} == comp_set :
+        #print('on ne supprime rien, les obj sont egaux :')
+        elem_to_del = 0 
+    
+    elif all(x in [0,1] for x in comp_set) | ({1} == comp_set) :
         #print('on delete le 2e element : ' , tuple2)
         elem_to_del = 2
     
-    elif (all(x in comp_set for x in [0,-1])) | ({-1} == comp_set) :
+    elif (all(x in [0,-1] for x in comp_set)) | ({-1} == comp_set) :
         #print('on delete le 1er element :', tuple1)
         elem_to_del = 1
-         
-    elif {0} == comp_set :
-        #print('on ne supprime rien, les obj sont egaux :')
-        elem_to_del = 0
         
     else :
         #print('On ne supprime rien ')
@@ -75,10 +77,11 @@ def compare_and_delete(tuple_group) :
                 dominated.append(tuple1)
             if who_to_del == 2 :
                 dominated.append(tuple2)
+                
     
     ## creates unique list of dominated tuples
     unique = [unique_domi.append(x) for x in dominated if x not in unique_domi]         
-    print('the dominated vector' , unique_domi)
+    #print('the dominated vector' , unique_domi)
     
     ## delete all the dominated tuples   
     tuple_group_copy[:] =  [n for n in tuple_group_copy if n not in unique_domi]
@@ -87,7 +90,6 @@ def compare_and_delete(tuple_group) :
     unique2 = [unique_tuple_group.append(x) for x in tuple_group_copy if x not in unique_tuple_group]
          
     return unique_tuple_group
-    
 
 
 def add_and_update_archive(neighbour_tuples, archive_tuple) :
@@ -107,24 +109,29 @@ def add_and_update_archive(neighbour_tuples, archive_tuple) :
     for neighbour in neighbour_tuples :
         
         
+        
         for arch in reversed(archive_tuple_copy) : 
             
             #print('treating another arch')
+            
                    
             who_to_del = compare_two_points(neighbour,arch)
             
             if who_to_del == 2 :
-                print("on va del qqun dans l'arch : ", arch)
+                
+                #print("on va del qqun dans l'arch : ", arch)
+                #print("celui qui l'a éliminé ", neighbour)
                 archive_tuple_copy[:] = [x for x in archive_tuple_copy if x != arch]
             
             if who_to_del == 1 :
-                print(' issue : neighbour is worse than someone in the archive')
+                #print(' issue : neighbour is worse than someone in the archive')
                 neigh_is_worse = True
                 break
                 
         if neigh_is_worse == False :
             neighs_to_add.append(neighbour)
-            neigh_is_worse = False
+            
+        neigh_is_worse = False
         
                 
             #print('after boucle if \n')   
@@ -136,7 +143,7 @@ def add_and_update_archive(neighbour_tuples, archive_tuple) :
     
     unique = [unique_archive.append(x) for x in archive_tuple_copy if x not in unique_archive]
     
-    #print('normally unique arch ' , unique_archive)
+    #print('type unique_arch ' , type(unique_archive))
     
     return unique_archive
             
