@@ -2,18 +2,81 @@ import numpy as np
 from random import shuffle
 
 from collections import namedtuple
+from hypervolume.jer import domine_max, domine_min
+
+Combo = namedtuple('Combo', 'x solution')
 
 
-def create_namedtuple():
-    Combo = namedtuple('Combo', 'x solution')
-    print('Type of combo: ', type(Combo))
-    first_combo = Combo(x=[1, 2, 3], solution=60)
-    second_combo = Combo([2, 3, 1], 785)
-    print(first_combo.x, ' et ', first_combo.solution)
-    print(second_combo.x, ' and ', second_combo.solution)
+def create_combo(x, objs):
+    return Combo(x=x, solution=get_solution(x, objs))
+
+
+def avoid_double(archive):
+    """
+        convertis l'archive en un dictionnaire où la clef est le combo formaté en string. Comme une clef est unique, on supprime ainsi les doublons.
+    """
+    sol = dict()
+    for a in archive:
+        sol[str(a)] = a
+    archive_doublon_free = []
+    for key in sol.keys():
+        archive_doublon_free.append(sol[key])
+    return archive_doublon_free
+
+
+def get_all_neighbour(x):
+    x = np.array(x)
+    l = len(x)
+    permutations = []
+    for i in range(l):
+        for j in range(i+1, l):
+            permutations.append([i, j])
+    all_possible_permutations = []
+    for permut in permutations:
+        tmp = x.copy()
+        tmp[permut] = x[permut[::-1]]
+        all_possible_permutations.append(tmp)
+    return all_possible_permutations
+
+
+def add_potential(archive, potential_neighbour):
+    """
+        pour chacun des éléments dans les voisins potentiels,
+        on parcours l'archive en entier. Si pour un seul élément de l'archive, p_n est dominé, on ne l'ajoute pas.
+        si on l'ajoute après cela, on considère l'archive comme modifiée -> changed devient vrai
+    """
+    changed = False
+    for p_n in potential_neighbour:
+        add_me = True
+        for a in archive:
+            if a.x != p_n.x and not domine_min(a, p_n):
+                add_me = False
+        if add_me:
+            changed = True
+            archive.append(p_n)
+    # cet étape n'est peut-être pas nécessaire, à vérifier.
+    archive = avoid_double(archive)
+    return archive, changed
+
+
+def remove_dominated(archive):
+    dominated = set()
+    for i in range(len(archive)):
+        for j in range(len(archive)):
+            if i != j and domine_max(archive[i].solution, archive[j].solution):
+                dominated.add(i)
+    index_dominated = sorted(dominated)
+    #print('dom:', index_dominated)
+    for index in reversed(index_dominated):
+        del archive[index]
+
+    return archive
 
 
 def read_data(filename):
+    """
+    fonction responsable de lire les données stockée dans les fichier .Dat donnés par le prof pour la séance de laboratoire
+    """
     array = np.fromfile(filename, dtype=int, sep=' ')
     dim = array[0]
     obj = []
@@ -23,6 +86,10 @@ def read_data(filename):
 
 
 def init(dim, n=1):
+    """
+    initialisation de vecteur de solution random.
+    prend en paramètre la dimension du vecteur et le nombre de solutions souhaitées.
+    """
     ini = list()
     for i in range(n):
         tmp = [i for i in range(dim)]
@@ -47,7 +114,7 @@ if __name__ == '__main__':
     dim, obj = read_data(filepath+'LAP-8-2objSOL.dat')
     ini = init(dim, 3)
     print(f"""
-        dim : {dim} 
+        dim : {dim}
         obj : {obj}
         init : {ini}
     """)

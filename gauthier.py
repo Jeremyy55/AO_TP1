@@ -1,10 +1,10 @@
 def update_iterations_count(change,iterations_count):
   if change==False:
     iterations_count+=1
-    print(iterations_count)
+    #print(iterations_count)
   else:
     iterations_count=0
-    print(iterations_count)
+    #print(iterations_count)
   return iterations_count
 
 def stop_condition(iterations_count,limite):

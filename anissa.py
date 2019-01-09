@@ -8,8 +8,6 @@ def x_and_sol_to_named_tuple(x_to_convert,objs) :
         
         tuple_list = []
         for x in x_to_convert:
-            print(x)
-            print(x[0])
             x_tuple = Combo(x,get_solution(x,objs))
             tuple_list.append(x_tuple)
 
@@ -39,19 +37,19 @@ def compare_two_points(tuple1,tuple2,) :
     #print(comp_set)
     
     if all(x in comp_set for x in [0,1]) | ({1} == comp_set) :
-        print('on delete le 2e element : ' , tuple2)
+        #print('on delete le 2e element : ' , tuple2)
         elem_to_del = 2
     
     elif (all(x in comp_set for x in [0,-1])) | ({-1} == comp_set) :
-        print('on delete le 1er element :', tuple1)
+        #print('on delete le 1er element :', tuple1)
         elem_to_del = 1
          
     elif {0} == comp_set :
-        print('on ne supprime rien, les obj sont egaux :')
+        #print('on ne supprime rien, les obj sont egaux :')
         elem_to_del = 0
         
     else :
-        print('On ne supprime rien ')
+        #print('On ne supprime rien ')
         elem_to_del = 0
     
     return elem_to_del
@@ -142,3 +140,28 @@ def add_and_update_archive(neighbour_tuples, archive_tuple) :
     
     return unique_archive
             
+def compare_old_and_new_archive(archive_old,archive_new) :
+    
+    equivalent_found = 0
+    archive_changed = True;
+
+    for new in archive_new :   
+    
+        for old in archive_old :    
+
+            #print(old[0].x)
+            #print(type(old))
+            #print(new.x)
+
+            if old.x == new.x :
+
+                equivalent_found += 1
+                continue;
+    #print("number of equivalences found : ", equivalent_found)
+    if (equivalent_found == len(archive_new) & len(archive_old) == len(archive_new)):
+        archive_changed = False;
+
+    #print('archive changed : '  , archive_changed)  
+    
+
+    return archive_changed 
