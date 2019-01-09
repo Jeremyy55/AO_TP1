@@ -9,10 +9,14 @@ if __name__ == '__main__':
     print('debut')
     filepath = 'Data/'
     filename = 'LAP-8-2objSOL.dat'
+    # lecture des données utile dans le fichier
     dim, obj = read_data(filepath+filename)
+    # initialisation de solutions
     xs = init(dim, 3)
     iteration_count = 0
-    while stop_condition(iteration_count, 100):
+    # début de la recherche
+    while stop_condition(iteration_count, 50):
         print(iteration_count)
+
         iteration_count = update_iterations_count(False, iteration_count)
     print('fin')
