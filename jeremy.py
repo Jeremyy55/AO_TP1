@@ -35,7 +35,7 @@ def get_all_neighbour(x):
     for permut in permutations:
         tmp = x.copy()
         tmp[permut] = x[permut[::-1]]
-        all_possible_permutations.append(tmp)
+        all_possible_permutations.append(tmp.tolist())
     return all_possible_permutations
 
 
@@ -47,12 +47,16 @@ def add_potential(archive, potential_neighbour):
     """
     changed = False
     for p_n in potential_neighbour:
+        # print('pp_n', p_n)
         add_me = True
         for a in archive:
-            if a.x != p_n.x and not domine_min(a, p_n):
+            # print('a', a)
+            if (a.x != p_n.x and domine_min(a.solution, p_n.solution)) or a.x == p_n.x:
+                # print('dominated, donc add pn: ', p_n)
                 add_me = False
         if add_me:
             changed = True
+            # print('changed = ', changed,'car on vient d\'ajouter p_n =', p_n, '\n\n')
             archive.append(p_n)
     # cet étape n'est peut-être pas nécessaire, à vérifier.
     archive = avoid_double(archive)
@@ -66,7 +70,7 @@ def remove_dominated(archive):
             if i != j and domine_max(archive[i].solution, archive[j].solution):
                 dominated.add(i)
     index_dominated = sorted(dominated)
-    #print('dom:', index_dominated)
+    # print('dom:', index_dominated)
     for index in reversed(index_dominated):
         del archive[index]
 
