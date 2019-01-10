@@ -47,7 +47,7 @@ def tri_objectif():
 if __name__ == '__main__':
     print('debut')
     # tri_objectif()
-    filename = 'trentex30_2obj.txt'
+    filename = 'trentex30_3obj.txt'
     xs, sols = read_data_in_solution_file(filename)
     reference = compute_ref(sols)
     LN = Local_nadir(sols, reference)
@@ -59,3 +59,4 @@ if __name__ == '__main__':
         list_z.append(tmp)
     hp = compute_hypervolum_surface(LN, reference, list_z+sols)
     print('hyper volume:', hp)
+    print('ref:', reference)
