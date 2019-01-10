@@ -2,6 +2,7 @@ from jer import Local_nadir
 from GO import compute_hypervolum_surface
 import numpy as np
 from pprint import pprint
+import scipy.io as io
 
 
 def read_data_in_solution_file(filename, dir_path='../nos_solutions/'):
@@ -32,6 +33,15 @@ def compute_ref(sols):
     return reference
 
 
+def read_AJ_AR(dir_used, filename='AJ_AR.mat', dir_path='../solutions_autres/'):
+    total_path = dir_path+dir_used+filename
+    print('total path:', total_path)
+    mat = io.loadmat(dir_path+dir_used+filename)
+    xs = mat['A']
+    sols = mat['A_obj']
+    return xs, sols
+
+
 def bi_objectif():
     archive = [[2, 4], [3, 3], [5, 2]]
     reference = [7, 5]
@@ -47,7 +57,10 @@ def tri_objectif():
 if __name__ == '__main__':
     print('debut')
     # tri_objectif()
-    filename = 'trentex30_3obj.txt'
+    xs, sols = read_AJ_AR('8-3obj/')
+    print('xs:\n', xs)
+    print('sols:\n', sols)
+    """filename = 'quinzex15_3obj.txt'
     xs, sols = read_data_in_solution_file(filename)
     reference = compute_ref(sols)
     LN = Local_nadir(sols, reference)
@@ -59,4 +72,4 @@ if __name__ == '__main__':
         list_z.append(tmp)
     hp = compute_hypervolum_surface(LN, reference, list_z+sols)
     print('hyper volume:', hp)
-    print('ref:', reference)
+    print('ref:', reference)"""
