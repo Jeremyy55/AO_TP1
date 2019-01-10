@@ -57,5 +57,5 @@ if __name__ == '__main__':
         tmp = [0 for i in range(len(reference))]
         tmp[i] = reference[i]
         list_z.append(tmp)
-    hp = compute_hypervolum_surface(LN, reference, list_z)
-    print(hp)
+    hp = compute_hypervolum_surface(LN, reference, list_z+sols)
+    print('hyper volume:', hp)
