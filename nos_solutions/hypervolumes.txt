@@ -1,2 +1,8 @@
-format : 
-fichier étudié: hypervolume: référence: 
+﻿format : 15x15 3obj
+fichier étudié: AJ_AR 
+hypervolume: 39414904
+référence: [97, 206, 249]
+format : 15x15 3obj
+fichier étudié: notre 
+hypervolume: 29512384
+référence: [97, 206, 249]
