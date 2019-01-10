@@ -71,7 +71,7 @@ def compute_hypervolum_surface(LN,reference_point,list_z):
         valeurs = np.array(valeurs)
         tmp_value = 1
         for value in valeurs:
-            tmp_value= tmp_value*np.diff(value)         
+            tmp_value= tmp_value*np.abs(np.diff(value))        
         #print("wtf",tmp_value)
         surface+=tmp_value
     return int(surface)   
