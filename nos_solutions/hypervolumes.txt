@@ -1,2 +1,21 @@
 format : 
 fichier étudié: hypervolume: référence: 
+
+8*8_3obj:
+hyper volume nous:  443340
+hyper volume a:  1198552
+ref: [57, 132, 147]
+-------
+format : 15x15 3obj
+fichier étudié: AJ_AR 
+hypervolume: 39414904
+référence: [97, 206, 249]
+format : 15x15 3obj
+fichier étudié: notre 
+hypervolume: 29512384
+référence: [97, 206, 249]
+------------
+format= 15x15 2obj
+hyper volume nous:  6398
+hyper volume a:  6656
+ref: [95, 149]
