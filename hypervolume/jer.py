@@ -17,6 +17,9 @@ def Local_nadir(archive, reference):
             for j in range(len(tmp_LNs)):
                 if domine_min(tmp_LNs[i], tmp_LNs[j]) and tmp_LNs[j] != tmp_LNs[i]:
                     dominator.append(i)
+        dominator = list(set(dominator))
+        dominator.sort()
+        # print(dominator)
         for index in reversed(dominator):
             del tmp_LNs[index]
         LNs = tmp_LNs
