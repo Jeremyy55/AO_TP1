@@ -1,3 +1,2 @@
-trentex30_2obj.txt hypervolume:6544 ref:[128,183]
-quinzex15_2obj.txt hypervolume:6118 ref:[95,145]
-vingtx20_2obj.txt hypervolume:4668 ref:[94, 151]
+format : 
+fichier étudié: hypervolume: référence: 
