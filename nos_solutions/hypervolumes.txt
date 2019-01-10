@@ -20,4 +20,28 @@ format= 15x15 2obj
 hyper volume nous:  6398
 hyper volume a:  6656
 ref: [95, 149]
-
+-------------
+format: 20x20 2obj
+hyper volume nous:  5508
+hyper volume a:  5936
+ref: [94, 165]
+--------------
+format:30x30 2obj
+hyper volume nous:  11748
+hyper volume a:  12436
+ref: [159, 201]
+------------
+format x8 2obj
+hyper volume nous:  1412
+hyper volume a:  1396
+ref: [55, 88]
+---------
+20x20 3obj
+hyper volume nous:  72826678
+hyper volume a:  157551212
+ref: [134, 279, 363]
+---------
+8x8 4obj
+"hyper volume nous:  744850376
+hyper volume a:  1507307088
+ref: [63, 140, 158, 259]"
