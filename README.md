@@ -1,13 +1,7 @@
 # AO_TP1
 
-Pour initialiser le projet, dans git-bash ou bien dans votre terminal :
-git clone +'le fichier.git du repository'
+Les fonctions se trouvent dans le fichier fonctions.py
 
-Voici la procédure pour ajouter vos modification:
+Nos solutions se trouvent dans le dossier 'nos_solutions'
 
-<ol>
-<li>git pull</li>
-<li>git add 'le fichier modifié'</li>
-<li> git commit -m "ton message"</li>
-<li>git push</li>
-</ol>
+Pour la comparaison des voisins et le calcul de l'hypervolume, il faut voir le Main-Comparaisons.py dans le fichier hypervolume 
