@@ -23,6 +23,9 @@ def read_data_in_solution_file(filename, dir_path='../nos_solutions/'):
 
 
 def compare_solutions_and_get_dominance(sols1, sols2):
+    print('longueur 1:', len(sols1))
+    print('longueur 2:', len(sols2))
+
     total_solutions = sols1+sols2
     dominated = set()
     for i in range(len(total_solutions)):
@@ -79,8 +82,8 @@ def tri_objectif():
 if __name__ == '__main__':
     print('debut')
     # tri_objectif()
-    xs_a, sols_a = read_AJ_AR('30-2obj/')
-    filename = 'trentex30_2obj.txt'
+    xs_a, sols_a = read_AJ_AR('15-4obj/')
+    filename = 'quinzex15_4obj.txt'
     xs, sols = read_data_in_solution_file(filename)
     compare_solutions_and_get_dominance(sols, sols_a)
     # prenez bien le même fichier sinon ça va pas aller
